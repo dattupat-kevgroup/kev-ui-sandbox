@@ -12,14 +12,14 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@kev-ui/button": "^0.1.1",
+    "@kev-ui/button": "^0.1.0",
     "@kev-ui/form": "^0.1.0",
     "@kev-ui/form-field": "^0.1.0",
     "@kev-ui/form-utilities": "^0.1.0",
     "@kev-ui/form-validation": "^0.1.0",
     "@kev-ui/js-utils": "^0.1.0",
     "@kev-ui/react-utils": "^0.1.0",
-    "@kev-ui/typography": "^0.1.2",
+    "@kev-ui/typography": "^0.1.0",
     "i18next": "^25.6.3",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
