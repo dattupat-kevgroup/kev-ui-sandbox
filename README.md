@@ -34,6 +34,30 @@ pnpm test
 pnpm test:watch
 ```
 
+## Verdaccio Setup
+
+### Publishing Packages to Verdaccio
+
+From the KEV-UI monorepo:
+
+```bash
+# Build all packages
+pnpm build
+
+# Publish to Verdaccio
+cd packages/design-system && pnpm publish --registry http://localhost:14385 --no-git-checks
+cd packages/js-utils && pnpm publish --registry http://localhost:14385 --no-git-checks
+# ... repeat for all packages
+```
+
+### Installing from Verdaccio
+
+This project has `.npmrc` configured to use Verdaccio for `@kev-ui` scope:
+
+```
+@kev-ui:registry=http://localhost:14385
+```
+
 ## Project Structure
 
 ```
@@ -210,30 +234,6 @@ describe('Package Integration', () => {
 });
 ```
 
-## Verdaccio Setup
-
-### Publishing Packages to Verdaccio
-
-From the KEV-UI monorepo:
-
-```bash
-# Build all packages
-pnpm build
-
-# Publish to Verdaccio
-cd packages/design-system && pnpm publish --registry http://localhost:14385 --no-git-checks
-cd packages/js-utils && pnpm publish --registry http://localhost:14385 --no-git-checks
-# ... repeat for all packages
-```
-
-### Installing from Verdaccio
-
-This project has `.npmrc` configured to use Verdaccio for `@kev-ui` scope:
-
-```
-@kev-ui:registry=http://localhost:14385
-```
-
 ## Language Switching
 
 Use the language buttons in the header to test i18n functionality:
@@ -272,18 +272,35 @@ Use the language buttons in the header to test i18n functionality:
 
 ## CSS Setup
 
-The project imports KEV-UI styles in `src/index.css`:
+The project imports KEV-UI styles in `src/index.css` using the all-in-one import (fonts are included automatically):
 
 ```css
-@import '@kev-ui/design-system/fonts.css';
-@import "tailwindcss";
-@import '@kev-ui/tw-theme/theme.css';
+@import '@kev-ui/design-system/styles.css';
 
 @source "../node_modules/@kev-ui/button/dist";
 @source "../node_modules/@kev-ui/typography/dist";
 ```
 
-**Important:** Fonts must be imported BEFORE tailwindcss due to CSS `@import` rules.
+### Switching Between design-system and tw-theme
+
+**@kev-ui/design-system** - Core tokens only (colors, typography, elevation, utilities)
+
+```css
+@import '@kev-ui/design-system/styles.css';
+```
+
+**@kev-ui/tw-theme** - Includes design-system + additional component classes (.card, .card-header, etc.)
+
+```css
+@import '@kev-ui/tw-theme/styles.css';
+```
+
+Both packages include:
+- Google Fonts (Asap + Inter)
+- Tailwind CSS
+- All design system tokens and theme configuration
+
+No need to import fonts separately - they're bundled in the `styles.css` entry point.
 
 ## Available Scripts
 

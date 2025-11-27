@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@kev-ui/button": "^0.1.0",
+    "@kev-ui/design-system": "^0.1.0",
     "@kev-ui/form": "^0.1.0",
     "@kev-ui/form-field": "^0.1.0",
     "@kev-ui/form-utilities": "^0.1.0",
