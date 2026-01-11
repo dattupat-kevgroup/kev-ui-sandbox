@@ -1,6 +1,6 @@
 import { type ReactNode } from 'react';
-import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { AppLink } from '@kev-ui/app-link';
 import { routes, packages } from '../routes';
 import { Button } from '@kev-ui/button';
 
@@ -28,12 +28,12 @@ export default function Layout({ children }: LayoutProps) {
                   .filter((r) => r.package === pkg.name)
                   .map((route) => (
                     <li key={route.path}>
-                      <Link
+                      <AppLink
                         to={route.path}
                         className="block px-2 py-1 rounded text-sm text-white hover:bg-brand_blue-700"
                       >
                         {route.label}
-                      </Link>
+                      </AppLink>
                     </li>
                   ))}
               </ul>
