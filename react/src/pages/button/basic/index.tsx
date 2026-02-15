@@ -1,5 +1,4 @@
-import { Button } from '@kev-ui/button';
-import * as ButtonModule from '@kev-ui/button';
+import { Button } from '@kev-ui/button/Button';
 
 export default function ButtonBasicPage() {
   return (
@@ -7,32 +6,14 @@ export default function ButtonBasicPage() {
       <h1 className="text-3xl font-bold mb-4">Button - Basic Integration</h1>
 
       <div className="bg-white p-6 rounded-lg shadow mb-6">
-        <h2 className="text-xl font-semibold mb-3">Import Methods</h2>
-
-        <div className="space-y-6">
-          <div>
-            <h3 className="font-semibold text-sm text-gray-600 mb-2">
-              1. Named Import
-            </h3>
-            <code className="bg-gray-100 px-2 py-1 rounded text-sm block mb-3">
-              import {`{ Button }`} from '@kev-ui/button'
-            </code>
-            <div className="flex gap-2">
-              <Button>Default Button</Button>
-              <Button color="primary">Primary</Button>
-              <Button color="secondary">Secondary</Button>
-            </div>
-          </div>
-
-          <div>
-            <h3 className="font-semibold text-sm text-gray-600 mb-2">
-              2. Namespace Import
-            </h3>
-            <code className="bg-gray-100 px-2 py-1 rounded text-sm block mb-3">
-              import * as ButtonModule from '@kev-ui/button'
-            </code>
-            <ButtonModule.Button variant="outlined">Outlined Button</ButtonModule.Button>
-          </div>
+        <h2 className="text-xl font-semibold mb-3">Import Method</h2>
+        <code className="bg-gray-100 px-2 py-1 rounded text-sm block mb-3">
+          import {`{ Button }`} from '@kev-ui/button/Button'
+        </code>
+        <div className="flex gap-2">
+          <Button>Default Button</Button>
+          <Button color="primary">Primary</Button>
+          <Button color="secondary">Secondary</Button>
         </div>
       </div>
 
@@ -60,14 +41,12 @@ export default function ButtonBasicPage() {
       </div>
 
       <div className="bg-green-50 p-6 rounded-lg">
-        <h2 className="text-xl font-semibold mb-2">✓ Integration Status</h2>
+        <h2 className="text-xl font-semibold mb-2">Integration Status</h2>
         <ul className="list-disc ml-6 space-y-1">
           <li>Package installed from Verdaccio</li>
-          <li>Named import works</li>
-          <li>Namespace import works</li>
+          <li>Subpath import works</li>
           <li>TypeScript types available</li>
           <li>Component renders correctly</li>
-          <li>Dependencies (design-system, js-utils) resolved</li>
         </ul>
       </div>
     </div>

@@ -1,84 +1,63 @@
 import { type ReactNode } from 'react';
-import { useTranslation } from 'react-i18next';
-import { AppLink } from '@kev-ui/app-link';
-import { routes, packages } from '../routes';
-import { Button } from '@kev-ui/button';
+import { useLocation, useNavigate } from 'react-router';
+import { Scaffolding } from '@kev-ui/scaffolding';
+import type {
+  iSidebarNavigationItem,
+  iSecondaryNavigationItem,
+  iLanguageOption,
+} from '@kev-ui/scaffolding';
+
+import { getNavLinksForPath, getSidebarItemsForPath, getPackageFromPath } from '../routes';
 
 interface LayoutProps {
   children: ReactNode;
 }
 
-export default function Layout({ children }: LayoutProps) {
-  const { i18n, t } = useTranslation();
+const languages: iLanguageOption[] = [
+  { code: 'en-CA', label: 'EN-CA', name: 'English (Canada)' },
+  { code: 'fr-CA', label: 'FR-CA', name: 'French (Canada)' },
+  { code: 'en-US', label: 'EN-US', name: 'English (US)' },
+];
 
-  const changeLanguage = (lng: string) => {
-    i18n.changeLanguage(lng);
+export default function Layout({ children }: LayoutProps) {
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const pathname = location.pathname;
+  const packageId = getPackageFromPath(pathname);
+
+  const sidebarItems = getSidebarItemsForPath(pathname);
+  const secondaryNavItems = getNavLinksForPath(pathname);
+
+  const pageTitle = sidebarItems.find((item) => item.id === packageId)?.text || 'KEV-UI Sandbox';
+
+  const handleSidebarItemClick = (item: iSidebarNavigationItem) => {
+    navigate(item.route);
+  };
+
+  const handleSecondaryNavClick = (item: iSecondaryNavigationItem) => {
+    if ('href' in item && item.href) {
+      navigate(item.href);
+    }
   };
 
   return (
-    <div className="flex h-screen">
-      <aside className="w-64 p-4 overflow-y-auto bg-brand_blue-800 text-white">
-        <h2 className="text-xl font-bold mb-4">KEV-UI Sandbox</h2>
-        <nav>
-          {packages.map((pkg) => (
-            <div key={pkg.name} className="mb-4">
-              <h3 className="font-semibold mb-2 text-brand_blue-200">{pkg.label}</h3>
-              <ul className="space-y-1 ml-2">
-                {routes
-                  .filter((r) => r.package === pkg.name)
-                  .map((route) => (
-                    <li key={route.path}>
-                      <AppLink
-                        to={route.path}
-                        className="block px-2 py-1 rounded text-sm text-white hover:bg-brand_blue-700"
-                      >
-                        {route.label}
-                      </AppLink>
-                    </li>
-                  ))}
-              </ul>
-            </div>
-          ))}
-        </nav>
-      </aside>
-
-      <div className="flex-1 flex flex-col">
-        <header className="shadow-sm px-6 py-4 bg-white">
-          <div className="flex justify-between items-center">
-            <h1 className="text-2xl font-bold">Package Tests</h1>
-            <div className="flex gap-2">
-              <Button
-                onClick={() => changeLanguage('en-CA')}
-                color="primary"
-                size="small"
-                variant={i18n.language === 'en-CA' ? 'contained' : 'outlined'}
-              >
-                EN-CA
-              </Button>
-              <Button
-                onClick={() => changeLanguage('en-US')}
-                color="primary"
-                size="small"
-                variant={i18n.language === 'en-US' ? 'contained' : 'outlined'}
-              >
-                EN-US
-              </Button>
-              <Button
-                onClick={() => changeLanguage('fr-CA')}
-                color="primary"
-                size="small"
-                variant={i18n.language === 'fr-CA' ? 'contained' : 'outlined'}
-              >
-                FR-CA
-              </Button>
-            </div>
-          </div>
-        </header>
-
-        <main className="flex-1 p-6 overflow-y-auto bg-primary_blue-50">
-          {children}
-        </main>
-      </div>
-    </div>
+    <Scaffolding
+      appTitle="KEV-UI Sandbox"
+      pageTitle={pageTitle}
+      sidebarNavigationItems={sidebarItems}
+      secondaryNavigationItems={secondaryNavItems}
+      onSidebarNavigationItemClick={handleSidebarItemClick}
+      onSecondaryNavigationItemClick={handleSecondaryNavClick}
+      schoolConfig={{ show: false, list: [] }}
+      languageConfig={{ show: true, list: languages }}
+      userMenuConfig={{
+        options: [
+          { id: 'logout', label: 'Logout', action: 'logout' },
+        ],
+      }}
+    >
+      {children}
+    </Scaffolding>
   );
 }

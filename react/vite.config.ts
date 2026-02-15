@@ -8,6 +8,9 @@ export default defineConfig({
   server: {
     port: 14390,
   },
+  resolve: {
+    dedupe: ['react', 'react-dom', 'react-i18next', 'i18next'],
+  },
   test: {
     globals: true,
     environment: 'jsdom',

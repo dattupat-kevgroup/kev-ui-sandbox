@@ -1,8 +1,5 @@
 /* Import design system (includes Tailwind CSS + all tokens + theme) */
 @import '@kev-ui/design-system/styles.css';
 
-/* Tell Tailwind to scan KEV-UI packages for utility classes */
-@source "../node_modules/@kev-ui/button/dist";
-@source "../node_modules/@kev-ui/typography/dist";
-@source "../node_modules/@kev-ui/form/dist";
-@source "../node_modules/@kev-ui/form-field/dist";
+/* Tell Tailwind to scan ALL @kev-ui packages for utility classes */
+@source "../node_modules/@kev-ui/*/dist";

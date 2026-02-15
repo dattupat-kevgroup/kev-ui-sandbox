@@ -1,4 +1,4 @@
-import { Typography } from '@kev-ui/typography';
+import { Typography } from '@kev-ui/typography/Typography';
 import { useTranslation } from 'react-i18next';
 
 export default function TypographyBasicPage() {
@@ -11,7 +11,7 @@ export default function TypographyBasicPage() {
       <div className="bg-white p-6 rounded-lg shadow mb-6">
         <h2 className="text-xl font-semibold mb-3">Import Method</h2>
         <code className="bg-gray-100 px-2 py-1 rounded text-sm">
-          import {`{ Typography }`} from '@kev-ui/typography'
+          import {`{ Typography }`} from '@kev-ui/typography/Typography'
         </code>
       </div>
 
@@ -42,13 +42,12 @@ export default function TypographyBasicPage() {
       </div>
 
       <div className="bg-green-50 p-6 rounded-lg">
-        <h2 className="text-xl font-semibold mb-2">✓ Integration Status</h2>
+        <h2 className="text-xl font-semibold mb-2">Integration Status</h2>
         <ul className="list-disc ml-6 space-y-1">
           <li>Package installed from Verdaccio</li>
-          <li>Named import works</li>
+          <li>Subpath import works</li>
           <li>TypeScript types available</li>
           <li>Component renders correctly</li>
-          <li>All variants supported</li>
           <li>i18n translations work</li>
         </ul>
       </div>

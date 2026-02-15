@@ -1,0 +1,58 @@
+import { Typography } from '@kev-ui/typography/Typography';
+import { IconButton } from '@kev-ui/button/IconButton';
+import { BellIcon, UserIcon, GlobeIcon, BurgerIcon } from '@kev-ui/icons';
+
+export default function ButtonIconPage() {
+  return (
+    <div>
+      <Typography variant="h4" className="mb-4">Icon Button</Typography>
+      <Typography variant="body1" className="text-gray-600 mb-6">
+        Buttons that display only an icon, useful for toolbars and compact UIs.
+      </Typography>
+
+      <div className="space-y-6">
+        <div>
+          <Typography variant="h6" className="mb-3">Default</Typography>
+          <div className="flex gap-2">
+            <IconButton aria-label="Notifications">
+              <BellIcon />
+            </IconButton>
+            <IconButton aria-label="User profile">
+              <UserIcon />
+            </IconButton>
+            <IconButton aria-label="Language">
+              <GlobeIcon />
+            </IconButton>
+            <IconButton aria-label="Menu">
+              <BurgerIcon />
+            </IconButton>
+          </div>
+        </div>
+
+        <div>
+          <Typography variant="h6" className="mb-3">Colors</Typography>
+          <div className="flex gap-2">
+            <IconButton color="primary" aria-label="Primary">
+              <BellIcon />
+            </IconButton>
+            <IconButton color="secondary" aria-label="Secondary">
+              <BellIcon />
+            </IconButton>
+            <IconButton color="error" aria-label="Error">
+              <BellIcon />
+            </IconButton>
+          </div>
+        </div>
+
+        <div>
+          <Typography variant="h6" className="mb-3">Disabled</Typography>
+          <div className="flex gap-2">
+            <IconButton disabled aria-label="Disabled">
+              <BellIcon />
+            </IconButton>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
