@@ -1,5 +1,9 @@
-/* Import design system (includes Tailwind CSS + all tokens + theme) */
-@import '@kev-ui/design-system/styles.css';
+@import 'tailwindcss';
 
-/* Tell Tailwind to scan ALL @kev-ui packages for utility classes */
+@plugin '@kev-ui/design-system/plugin';
+
+/* Scaffolding nav color variables */
+@import '@kev-ui/scaffolding/styles.css';
+
+/* Scan @kev-ui packages for Tailwind utility classes */
 @source "../node_modules/@kev-ui/*/dist";
