@@ -1,316 +1,192 @@
 # KEV-UI Sandbox
 
-This project tests the integration of all `@kev-ui` packages installed from a local Verdaccio registry.
+A development sandbox for testing `@kev-ui` component library integration. This project simulates how a real consumer application installs, configures, and uses KEV-UI packages.
 
 ## Prerequisites
 
-1. **Verdaccio running** on `http://localhost:14385`
-2. **All @kev-ui packages published** to Verdaccio
-3. **Node.js** and **pnpm** installed
+- **Node.js** (v20+) and **pnpm** installed
+- For Verdaccio mode: Verdaccio running on `http://localhost:14385`
 
-## Getting Started
+## Installation
 
-### 1. Install Dependencies
+### Option A: From npm Registry (Production)
+
+When `@kev-ui` packages are published to npm, remove (or comment out) the `.npmrc` override and install normally:
 
 ```bash
+# .npmrc — remove or comment out this line:
+# @kev-ui:registry=http://localhost:14385
+
 pnpm install
 ```
 
-### 2. Run Development Server
+### Option B: From Verdaccio (Development)
+
+Verdaccio is a lightweight local npm registry used during development to test packages before publishing to npm. It lets you `pnpm publish` locally and `pnpm install` exactly as a real consumer would — without pushing to npm.
+
+**1. Start Verdaccio** (from any terminal):
 
 ```bash
-pnpm dev
+verdaccio --listen 14385
 ```
 
-The app will run on `http://localhost:14390`
-
-### 3. Run Tests
-
-```bash
-# Run all tests
-pnpm test
-
-# Watch mode
-pnpm test:watch
-```
-
-## Verdaccio Setup
-
-### Publishing Packages to Verdaccio
-
-From the KEV-UI monorepo:
-
-```bash
-# Build all packages
-pnpm build
-
-# Publish to Verdaccio
-cd packages/design-system && pnpm publish --registry http://localhost:14385 --no-git-checks
-cd packages/js-utils && pnpm publish --registry http://localhost:14385 --no-git-checks
-# ... repeat for all packages
-```
-
-### Installing from Verdaccio
-
-This project has `.npmrc` configured to use Verdaccio for `@kev-ui` scope:
+**2. Ensure `.npmrc` points to Verdaccio:**
 
 ```
 @kev-ui:registry=http://localhost:14385
 ```
 
-## Project Structure
-
-```
-src/
-├── components/
-│   └── Layout.tsx          # Main layout with sidebar and header
-├── pages/
-│   ├── Home.tsx            # Landing page
-│   ├── js-utils/
-│   │   ├── generateId/
-│   │   │   ├── index.tsx   # Example page
-│   │   │   └── __tests__/
-│   │   │       └── index.test.tsx
-│   │   └── isNil/
-│   │       ├── index.tsx
-│   │       └── __tests__/
-│   ├── button/
-│   │   └── basic/
-│   │       ├── index.tsx
-│   │       └── __tests__/
-│   └── typography/
-│       └── basic/
-│           ├── index.tsx
-│           └── __tests__/
-├── App.tsx                 # Main app with routing
-├── routes.tsx              # Route configuration
-└── i18n.ts                # i18n setup
-```
-
-## Adding New Examples
-
-### Step 1: Create Folder Structure
-
-For a new component or function example:
+**3. Publish packages from KEV-UI monorepo:**
 
 ```bash
-mkdir -p src/pages/{package-name}/{example-name}/__tests__
+# From the KEV-UI monorepo root
+pnpm build
+
+# Publish all packages (run from each package dir, or use a script)
+cd packages/<package-name> && pnpm publish --registry http://localhost:14385 --no-git-checks
 ```
 
-Example:
+**4. Install in this sandbox:**
+
 ```bash
-mkdir -p src/pages/form-utilities/createOption/__tests__
+pnpm install
 ```
 
-### Step 2: Create Example Page
+**Switching back to npm:** When packages are available on npm, simply remove the `@kev-ui:registry` line from `.npmrc` and run `pnpm install` again. No other changes needed.
 
-Create `src/pages/{package-name}/{example-name}/index.tsx`:
+## Running
 
-```tsx
-export default function ExamplePage() {
-  return (
-    <div className="max-w-4xl">
-      <h1 className="text-3xl font-bold mb-4">Example Title</h1>
+```bash
+# Development server (http://localhost:14390)
+pnpm dev
 
-      <div className="bg-white p-6 rounded-lg shadow mb-6">
-        <h2 className="text-xl font-semibold mb-3">Import Methods</h2>
-        {/* Show different import methods */}
-      </div>
+# Production build
+pnpm build
 
-      <div className="bg-white p-6 rounded-lg shadow mb-6">
-        <h2 className="text-xl font-semibold mb-3">Examples</h2>
-        {/* Show working examples */}
-      </div>
+# Tests
+pnpm test
 
-      <div className="bg-green-50 p-6 rounded-lg">
-        <h2 className="text-xl font-semibold mb-2">✓ Integration Status</h2>
-        <ul className="list-disc ml-6 space-y-1">
-          <li>Package installed from Verdaccio</li>
-          <li>Imports work correctly</li>
-          <li>TypeScript types available</li>
-        </ul>
-      </div>
-    </div>
-  );
-}
+# Tests in watch mode
+pnpm test:watch
 ```
 
-### Step 3: Create Tests
+## i18n / Translations
 
-Create `src/pages/{package-name}/{example-name}/__tests__/index.test.tsx`:
+KEV-UI uses [i18next](https://www.i18next.com/) for translations. Supported locales: `en-CA`, `en-US`, `fr-CA`.
 
-```tsx
-import { describe, it, expect } from 'vitest';
-import { render, screen } from '@testing-library/react';
-import { BrowserRouter } from 'react-router-dom';
-import ExamplePage from '../index';
+### Setup (src/i18n.ts)
 
-describe('Example Integration', () => {
-  it('renders the page', () => {
-    render(
-      <BrowserRouter>
-        <ExamplePage />
-      </BrowserRouter>
-    );
-    expect(screen.getByText('Example Title')).toBeInTheDocument();
-  });
+```typescript
+import i18next from 'i18next';
+import { initReactI18next } from 'react-i18next';
+import { registerFormUtilitiesTranslations } from '@kev-ui/form-utilities/locales';
+import { registerFormValidationTranslations } from '@kev-ui/form-validation/locales';
 
-  // Add more tests for the actual functionality
+i18next.use(initReactI18next).init({
+  lng: 'en-CA',
+  fallbackLng: 'en-CA',
+  supportedLngs: ['en-CA', 'en-US', 'fr-CA'],
+  interpolation: { escapeValue: false },
+  resources: {},
 });
+
+// Only utility packages need manual registration.
+// Component packages auto-register on first render.
+registerFormUtilitiesTranslations(i18next);
+registerFormValidationTranslations(i18next);
+
+export default i18next;
 ```
 
-### Step 4: Add Route
+### How It Works
 
-Update `src/routes.tsx`:
+- **Component packages** (chip, drawer, dropdown-menu, form-field, scaffolding, table) **auto-register** their translations the first time a component renders. No manual setup needed.
+- **Utility packages** (form-utilities, form-validation) have no React components, so they must be registered manually in your `i18n.ts` as shown above.
+- **Other packages** (avatar, backdrop, badge, button, date-picker, form, list, modal, popover, typography) have locale files available but their components don't use translations internally. Register them manually only if you need their translation keys in your own code.
 
-```tsx
-export const routes = [
-  // ... existing routes
-  { path: '/package-name/example-name', label: 'Example Label', package: 'package-name' },
-];
+### Overriding Translations
+
+To replace specific translation keys with your own text, use `addResourceBundle` with `overwrite=true`:
+
+```typescript
+// In your i18n.ts — BEFORE or AFTER component renders, both work.
+i18next.addResourceBundle('en-CA', '@kev-ui/chip', {
+  chip: { removeLabel: 'My Custom Remove {{label}}' }
+}, true, true); // deep=true, overwrite=true
 ```
 
-### Step 5: Add to App Router
+- `deep=true` — merges at all nesting levels (only the keys you specify are replaced)
+- `overwrite=true` — your values take priority over the defaults
 
-Update `src/App.tsx`:
+**How to find available keys:** Look at the JSON files in each package's `locales/` folder (e.g., `@kev-ui/chip/locales/en-CA/chip.json`).
 
-```tsx
-import ExamplePage from './pages/package-name/example-name';
-
-// In the Routes:
-<Route path="/package-name/example-name" element={<ExamplePage />} />
-```
-
-## Import Method Testing
-
-Each example should demonstrate at least 2-3 import methods:
-
-### 1. Subpath Import (Tree-shaking)
-```tsx
-import { generateId } from '@kev-ui/js-utils/generateId';
-```
-
-### 2. Named Import
-```tsx
-import { generateId } from '@kev-ui/js-utils';
-```
-
-### 3. Namespace Import
-```tsx
-import * as JsUtils from '@kev-ui/js-utils';
-const id = JsUtils.generateId();
-```
-
-## Testing Guidelines
-
-### What to Test
-
-1. **Page renders** - Basic render test
-2. **Import methods work** - Test actual imports from the package
-3. **TypeScript types** - Verify types are available (implicit through TypeScript compilation)
-4. **Functionality** - Test core functionality works as expected
-
-### Example Test Pattern
-
-```tsx
-describe('Package Integration', () => {
-  // Test 1: Page renders
-  it('renders the page', () => {
-    render(<BrowserRouter><Page /></BrowserRouter>);
-    expect(screen.getByText('Title')).toBeInTheDocument();
-  });
-
-  // Test 2: Import works
-  it('imports function correctly', () => {
-    const result = importedFunction();
-    expect(result).toBeDefined();
-  });
-
-  // Test 3: Functionality
-  it('executes correctly', () => {
-    const result = importedFunction('test');
-    expect(result).toBe('expected');
-  });
-});
-```
-
-## Language Switching
-
-Use the language buttons in the header to test i18n functionality:
-- EN-US
-- EN-CA
-- FR-CA
-
-## Common Issues
-
-### Package not found
-
-**Problem**: `404 Not Found - GET http://localhost:14385/@kev-ui/package-name`
-
-**Solution**:
-1. Ensure Verdaccio is running
-2. Verify package is published: Visit `http://localhost:14385` in browser
-3. Re-publish the package if needed
-
-### TypeScript errors
-
-**Problem**: Cannot find module '@kev-ui/package-name'
-
-**Solution**:
-1. Delete `node_modules` and `pnpm-lock.yaml`
-2. Run `pnpm install` again
-3. Restart TypeScript server in your IDE
-
-### Build errors
-
-**Problem**: Vite build fails with missing dependencies
-
-**Solution**:
-1. Check that all peer dependencies are installed
-2. Verify package exports in package.json
-3. Check that workspace dependencies resolved correctly
+**Interpolation:** Use `{{variable}}` syntax in your overrides. The component passes the same variables as the original translation. For example, the chip `removeLabel` key receives `{{label}}` — the chip's text content.
 
 ## CSS Setup
 
-The project imports KEV-UI styles in `src/index.css` using the all-in-one import (fonts are included automatically):
+Import KEV-UI styles in `src/index.css`:
 
 ```css
 @import '@kev-ui/design-system/styles.css';
 
 @source "../node_modules/@kev-ui/button/dist";
 @source "../node_modules/@kev-ui/typography/dist";
+/* Add @source for each component package you use */
 ```
 
-### Switching Between design-system and tw-theme
+`@kev-ui/design-system/styles.css` includes Google Fonts (Asap + Inter), Tailwind CSS, and all design tokens. No separate font imports needed.
 
-**@kev-ui/design-system** - Core tokens only (colors, typography, elevation, utilities)
+## Project Structure
 
-```css
-@import '@kev-ui/design-system/styles.css';
+```
+src/
+├── components/
+│   └── Layout.tsx              # Sidebar layout with navigation
+├── pages/
+│   ├── Home.tsx                # Landing page
+│   ├── button/                 # Button demos
+│   ├── chip/                   # Chip demos (incl. deletable)
+│   ├── drawer/                 # Drawer demos
+│   ├── dropdown-menu/          # DropdownMenu demos
+│   ├── form/                   # Form demos
+│   ├── form-fields/            # TextField, Combobox demos
+│   ├── icons/                  # Icons demo
+│   ├── js-utils/               # JS utility demos
+│   ├── list/                   # List demos
+│   └── typography/             # Typography demos
+├── App.tsx                     # Router setup
+├── routes.tsx                  # Route definitions
+├── i18n.ts                     # i18n configuration
+└── main.tsx                    # Entry point
 ```
 
-**@kev-ui/tw-theme** - Includes design-system + additional component classes (.card, .card-header, etc.)
+## Adding New Examples
 
-```css
-@import '@kev-ui/tw-theme/styles.css';
-```
+1. Create page file at `src/pages/{package-name}/index.tsx`
+2. Add route to `src/routes.tsx`
+3. Add `<Route>` to `src/App.tsx`
+4. Optionally add tests at `src/pages/{package-name}/__tests__/index.test.tsx`
 
-Both packages include:
-- Google Fonts (Asap + Inter)
-- Tailwind CSS
-- All design system tokens and theme configuration
+## Common Issues
 
-No need to import fonts separately - they're bundled in the `styles.css` entry point.
+### Package not found (404)
 
-## Available Scripts
+Verdaccio is not running or the package hasn't been published. Check:
+1. Verdaccio is running: `http://localhost:14385`
+2. Package is published: browse Verdaccio web UI
+3. `.npmrc` has `@kev-ui:registry=http://localhost:14385`
 
-- `pnpm dev` - Start development server
-- `pnpm build` - Build for production
-- `pnpm test` - Run all tests
-- `pnpm test:watch` - Run tests in watch mode
-- `pnpm lint` - Lint code
-- `pnpm preview` - Preview production build
+### Cannot find module '@kev-ui/...'
 
-## Documentation
+1. Delete `node_modules` and `pnpm-lock.yaml`
+2. Run `pnpm install`
+3. Restart your IDE's TypeScript server
 
-See `docs/` folder for additional documentation on specific topics.
+### Translations showing raw keys
+
+If you see keys like `chip.removeLabel` instead of text:
+1. Ensure `i18n.ts` is imported before any component renders (it's imported in `main.tsx`)
+2. For utility packages, verify manual `registerXxxTranslations()` calls exist in `i18n.ts`
+3. Check the browser console for i18next warnings
+
+**Last Updated:** February 15, 2026
