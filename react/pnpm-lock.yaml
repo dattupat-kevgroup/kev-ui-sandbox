@@ -72,77 +72,77 @@ importers:
         specifier: 0.1.0
         version: 0.1.0(i18next@25.8.8(typescript@5.9.3))(react-dom@19.2.4(react@19.2.4))(react-i18next@16.5.4(i18next@25.8.8(typescript@5.9.3))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(typescript@5.9.3))(react@19.2.4)(tailwind-merge@3.4.1)(tailwindcss@4.1.18)
       i18next:
-        specifier: ^25.8.8
+        specifier: ^25.6.3
         version: 25.8.8(typescript@5.9.3)
       react:
-        specifier: ^19.2.4
+        specifier: ^19.2.0
         version: 19.2.4
       react-dom:
-        specifier: ^19.2.4
+        specifier: ^19.2.0
         version: 19.2.4(react@19.2.4)
       react-i18next:
-        specifier: ^16.5.4
+        specifier: ^16.3.5
         version: 16.5.4(i18next@25.8.8(typescript@5.9.3))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(typescript@5.9.3)
       react-router:
-        specifier: ^7.13.0
+        specifier: ^7.9.6
         version: 7.13.0(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
     devDependencies:
       '@eslint/js':
-        specifier: ^9.39.2
+        specifier: ^9.39.1
         version: 9.39.2
       '@tailwindcss/vite':
-        specifier: ^4.1.18
+        specifier: ^4.1.17
         version: 4.1.18(vite@7.3.1(@types/node@24.10.13)(jiti@2.6.1)(lightningcss@1.30.2))
       '@testing-library/jest-dom':
         specifier: ^6.9.1
         version: 6.9.1
       '@testing-library/react':
-        specifier: ^16.3.2
+        specifier: ^16.3.0
         version: 16.3.2(@testing-library/dom@10.4.1)(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       '@types/node':
-        specifier: ^24.10.13
+        specifier: ^24.10.1
         version: 24.10.13
       '@types/react':
-        specifier: ^19.2.14
+        specifier: ^19.2.5
         version: 19.2.14
       '@types/react-dom':
         specifier: ^19.2.3
         version: 19.2.3(@types/react@19.2.14)
       '@vitejs/plugin-react':
-        specifier: ^5.1.4
+        specifier: ^5.1.1
         version: 5.1.4(vite@7.3.1(@types/node@24.10.13)(jiti@2.6.1)(lightningcss@1.30.2))
       eslint:
-        specifier: ^9.39.2
+        specifier: ^9.39.1
         version: 9.39.2(jiti@2.6.1)
       eslint-plugin-react-hooks:
         specifier: ^7.0.1
         version: 7.0.1(eslint@9.39.2(jiti@2.6.1))
       eslint-plugin-react-refresh:
-        specifier: ^0.4.26
+        specifier: ^0.4.24
         version: 0.4.26(eslint@9.39.2(jiti@2.6.1))
       globals:
         specifier: ^16.5.0
         version: 16.5.0
       jsdom:
-        specifier: ^27.4.0
+        specifier: ^27.2.0
         version: 27.4.0
       postcss:
         specifier: ^8.5.6
         version: 8.5.6
       tailwindcss:
-        specifier: ^4.1.18
+        specifier: ^4.1.17
         version: 4.1.18
       typescript:
         specifier: ~5.9.3
         version: 5.9.3
       typescript-eslint:
-        specifier: ^8.55.0
+        specifier: ^8.46.4
         version: 8.55.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3)
       vite:
-        specifier: ^7.3.1
+        specifier: ^7.2.4
         version: 7.3.1(@types/node@24.10.13)(jiti@2.6.1)(lightningcss@1.30.2)
       vitest:
-        specifier: ^4.0.18
+        specifier: ^4.0.12
         version: 4.0.18(@types/node@24.10.13)(jiti@2.6.1)(jsdom@27.4.0)(lightningcss@1.30.2)
 
 packages:
@@ -549,7 +549,7 @@ packages:
         optional: true
 
   '@kev-ui/avatar@0.1.0':
-    resolution: {integrity: sha512-iHg4E0T7sbv/BcI3jehbENpoC1Cwzmfn45jXu50djx7RitWBnmXd1Xs01iVmw/gw681XwyqhEWcGXHqokEWiGw==}
+    resolution: {integrity: sha512-1HvRSc0igrVM8sBP9iIHJtib676Xgu4Gqex4ClWja7R1HOpmF2sbGxc14S0LvX5iZQXkdveJxzpNuatYsc+6sw==}
     peerDependencies:
       i18next: ^25.0.0
       react: ^19.2.0
@@ -557,7 +557,7 @@ packages:
       react-i18next: ^16.0.0
 
   '@kev-ui/backdrop@0.1.0':
-    resolution: {integrity: sha512-kWyRwl/fVzeS8Xt8Z4lf1q/v7SwKQFJLigom8CZfuMj2bSW+9vfILZyZZ63MVfNJn7vT+J7NBMVCZo+VvrcAHg==}
+    resolution: {integrity: sha512-iywyk45quoZRsEnzmCPSnoQjiqdRcWidVjgkXf9RrVeKP4fZZ41nr1HYMw/jfqiOHn8WK915kAvVLoVISwVmuQ==}
     peerDependencies:
       i18next: ^25.0.0
       react: ^19.2.0
@@ -565,7 +565,7 @@ packages:
       react-i18next: ^16.0.0
 
   '@kev-ui/badge@0.1.0':
-    resolution: {integrity: sha512-Z2pcOHFRuZSqg/HSpwWoAoLCnms26iaMsnrCcqnTA9OUuO8e+3N7XUeltB005palHRDBirOTw/lxYw8hoVug/w==}
+    resolution: {integrity: sha512-nWMfWNT6504Tqtk1r5ebEz1gwB06veJewwEZQLr9hcGb9TOR7hZjEKnIC2ZaiSb7z5RxabrKpV7kK6gvKYw7hw==}
     peerDependencies:
       i18next: ^25.0.0
       react: ^19.2.0
@@ -573,7 +573,7 @@ packages:
       react-i18next: ^16.0.0
 
   '@kev-ui/button@0.1.0':
-    resolution: {integrity: sha512-2I2q0Geg1q8KMV0BHajpsif2diTQj3FXvFxSoJFIO1qzT3ZpRKvsgRICz6vscmMVN4UYGsXsc7OiJ2jBC/ru1g==}
+    resolution: {integrity: sha512-QfnrmQmMRDLKg2mhUBoSg4SU3x1n08GrnMhsue7H5U0/Ypaq0kDBioQDHUsDsfl65N745+fHKF7b66ARYB2HMA==}
     peerDependencies:
       i18next: ^25.0.0
       react: ^19.2.0
@@ -581,7 +581,7 @@ packages:
       react-i18next: ^16.0.0
 
   '@kev-ui/chip@0.1.0':
-    resolution: {integrity: sha512-GL8yp91QkswqP8BslLBHEDvdjWPwrI/KwyzTSk8wz9l0LHiwc25yAz1Qqifk4qCkQyg/fL6OoldKy/2DFa++zQ==}
+    resolution: {integrity: sha512-m1yEzLU/PEOmSDi32Sv7zbb7XPJdg8KnQw+YIPlqBGMpXBY1GZZY4urCf4LfBvdSNBgMpXBxgkBFnqB+GsJVsg==}
     peerDependencies:
       '@tailwindcss/vite': ^4.1.17
       i18next: ^25.0.0
@@ -598,7 +598,7 @@ packages:
         optional: true
 
   '@kev-ui/drawer@0.1.0':
-    resolution: {integrity: sha512-IpKDSG3s3MeKtVU6r/e1tW/pCfw5KEAjgxRcu8r9nIdMt3LeZcTdZ0KVL+q8gAZ6F7HO3niORMelR1GftiCqPQ==}
+    resolution: {integrity: sha512-jVzG5Fc5JiJuAhwswsF0tdGtAMnl2NOP/Lh+hZs9Ap435OoH/819PTQCmjTJCiaZwxwau3+KDxp8UiIiRc1nXQ==}
     peerDependencies:
       i18next: ^25.0.0
       react: ^19.2.0
@@ -606,7 +606,7 @@ packages:
       react-i18next: ^16.0.0
 
   '@kev-ui/dropdown-menu@0.1.0':
-    resolution: {integrity: sha512-EmdsvxzGoKHPVnRycsUuFQyq/3JjLClgbC1e/wlhfRimkCRkYtEKeMplS/NR5Nzwrg3jszQfXc7wuEn8pzT+XA==}
+    resolution: {integrity: sha512-blo1/j3/8/kwv8kSSKr+ri/R+ZeOejFuUrJTznyiqgUY/RE1hZwkOXyff6I8cpidMBOHnJ9Keqx/6AKZ/yM5Ww==}
     peerDependencies:
       i18next: ^25.0.0
       react: ^19.2.0
@@ -614,7 +614,7 @@ packages:
       react-i18next: ^16.0.0
 
   '@kev-ui/form-field@0.1.0':
-    resolution: {integrity: sha512-7lpQgJmGRF1MRKvcHwk30xxmoVbCFla79qH3bghD58aZ0EW9DiNB9oWI/rFw7Y4g+pQog3ac/tYqQM9PhtnwzQ==}
+    resolution: {integrity: sha512-WjeYYZaR88mlrL+XWrAXkgX/KPR4Ja/aKxrYjUUqSuI4PzwdURw9lDhtxFNst2eGb8fXAtoZqgPaNUawyUtsgA==}
     peerDependencies:
       i18next: ^25.0.0
       react: ^19.2.0
@@ -622,18 +622,18 @@ packages:
       react-i18next: ^16.0.0
 
   '@kev-ui/form-utilities@0.1.0':
-    resolution: {integrity: sha512-oj6VLIa5RFTxKzftxGGh+i/7gAP4tzQ4I1NfK1smXAv+ObeZCHoQhxRquvdhKDoh/yRlzQYbJC0ZnICJoOWxCQ==}
+    resolution: {integrity: sha512-q4WLxkP/lfmnj0ioo+yin7JNLwsXFMUGem0TFHDfbEJbS/Rb2F5usIdg2urwHCzn7Wmc6S/SO/00NHA++Ll3Fw==}
     peerDependencies:
       i18next: ^25.0.0
       react-i18next: ^16.0.0
 
   '@kev-ui/form-validation@0.1.0':
-    resolution: {integrity: sha512-QL0Zza8A7TxMBdg0rb2xOkk91MsxFwAO5P9zE9N+7RTUqZ5YK9GW27dJxIHeiMZCJDzAYpYjFIju/3IMu9zqWQ==}
+    resolution: {integrity: sha512-zm4wNRAMmDq2PwUrI5U//QzbHHeRN6Qg9KalL0ClH2K2KO+iVlTwNwBUmUMKUkpYGiWKA5Dxh+1dapfM8p2vUg==}
     peerDependencies:
       i18next: ^25.0.0
 
   '@kev-ui/form@0.1.0':
-    resolution: {integrity: sha512-0oH6bUZ/I8agLb5yALTweqJKiXHQAO81NC6fUznjfi5FeWV9twx2jtt2dAmu6aoCd1Ft62uEIMn6Zn/uIKryMQ==}
+    resolution: {integrity: sha512-c2PdXRRWzNgb4tQ5T+0kC9MRuOSXynF7pAfTCT489IdDH/JLhDEPWiK4Ezu7Iz3ZKE6QyxPcwsvuT4whokvjIg==}
     peerDependencies:
       i18next: ^25.0.0
       react: ^19.2.0
@@ -650,7 +650,7 @@ packages:
     resolution: {integrity: sha512-lrVcRFWA4NGO/Fx5HPYl1UGgAT5ynzm1o1lWQxMu2UlgYD9YLS3gDn/LYAoXhEvJqwALi5QxVxC/sE2VLadHrQ==}
 
   '@kev-ui/list@0.1.0':
-    resolution: {integrity: sha512-wuDw7Z/Q+1qjmHKnT+nYeWgMs73OdVz1kk2xBncnxD3axkUgFN8sSykgbj7M1z1KjxioZu5sa/QSTTc1xVvFfQ==}
+    resolution: {integrity: sha512-ygeSPSD50fsuWJ8T0ZQ075N7nsM9hjxbOU6n5sJt/sKES1IvnVR/Q2rDyPusl5rsmc4ERpEU6+rd2sO198bOIA==}
     peerDependencies:
       i18next: ^25.0.0
       react: ^19.2.0
@@ -658,7 +658,7 @@ packages:
       react-i18next: ^16.0.0
 
   '@kev-ui/modal@0.1.0':
-    resolution: {integrity: sha512-50jEitvWte3kUZ3l+4JxxV3mtQT97/+lSe5IieKmeTGCH70TbP7ogewMLg4eYp6sHM1FfgM6IQ0ez3jZCDBr+A==}
+    resolution: {integrity: sha512-XZTuwxhVNlYIySlkpRrL4S8/xOvFrloRxtkjH/dVYop5SYZhnPgEc3oDJwUDb/NRKigZWaeEAbWSXAg0w9EvxQ==}
     peerDependencies:
       i18next: ^25.0.0
       react: ^19.2.0
@@ -666,7 +666,7 @@ packages:
       react-i18next: ^16.0.0
 
   '@kev-ui/popover@0.1.0':
-    resolution: {integrity: sha512-sCODrGjqm7J4q5gIATPiDQbhN2cKXzQOYaQO1jP1ybMxqk39hS2nk9Cp7w9wd9POScCgc6ZKie0fv8seno9Ylw==}
+    resolution: {integrity: sha512-Szs9K/gthcEN0+4Pd1Hhy2J31F8NHjEI9zXQxeczKxwZKi+mUgh+6zGPX3jiCsOYLt5fXwc6fPOLybmfwierRg==}
     peerDependencies:
       i18next: ^25.0.0
       react: ^19.2.0
@@ -680,7 +680,7 @@ packages:
       react-dom: ^19.2.0
 
   '@kev-ui/scaffolding@0.1.0':
-    resolution: {integrity: sha512-BM1qboJJBONqiCLjCYS3ZzOqernQcXx/9D0dIEhdcyopLtj7fjNNQqaF32NHtRzClx6KzS1qq0vBRdMjgBEcEw==}
+    resolution: {integrity: sha512-bHIJFp1QgDC8SCpB9y7FH5KgclsSBI2rmQAqtXKWATB82PRKYKsvP6OFBpHIoQK4Cxs+eS7u7C5XNaENBgurEQ==}
     peerDependencies:
       i18next: ^25.0.0
       react: ^19.2.0
@@ -688,7 +688,7 @@ packages:
       react-i18next: ^16.0.0
 
   '@kev-ui/typography@0.1.0':
-    resolution: {integrity: sha512-iD7uoW5Vyqd+ZpzdOPXIq4ixWD6pXd89OUOOtaYLO7tY5uSyFM255NfHyETTdBpD2uxgzwh/587BVTTHL76Ucw==}
+    resolution: {integrity: sha512-OWeTdmJmTXwXW3+qTB8HSLsvMZqd2sqzIt0tty0eCq9UBjWHTL+yTnYlT/J8ctjYiMv5nGAJs8nGLqZFtoUHRA==}
     peerDependencies:
       i18next: ^25.0.0
       react: ^19.2.0
