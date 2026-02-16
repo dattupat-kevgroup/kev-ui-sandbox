@@ -36,23 +36,62 @@ verdaccio --listen 14385
 @kev-ui:registry=http://localhost:14385
 ```
 
-**3. Publish packages from KEV-UI monorepo:**
+**3. Register a Verdaccio user** (first time only, or after resetting storage):
+
+```bash
+curl -X PUT -H "Content-Type: application/json" \
+  -d '{"name":"test","password":"test123"}' \
+  http://localhost:14385/-/user/org.couchdb.user:test
+```
+
+Copy the `token` from the response and set it:
+
+```bash
+npm set //localhost:14385/:_authToken "<token-from-response>"
+```
+
+**4. Build and publish from KEV-UI monorepo:**
 
 ```bash
 # From the KEV-UI monorepo root
 pnpm build
-
-# Publish all packages (run from each package dir, or use a script)
-cd packages/<package-name> && pnpm publish --registry http://localhost:14385 --no-git-checks
+pnpm -r publish --registry http://localhost:14385 --no-git-checks
 ```
 
-**4. Install in this sandbox:**
+> **Important:** Always use `pnpm -r publish`, never `npm publish`. pnpm resolves `workspace:*` dependencies to actual version numbers — npm does not, which causes broken installs.
+
+**5. Install in this sandbox:**
 
 ```bash
 pnpm install
 ```
 
 **Switching back to npm:** When packages are available on npm, simply remove the `@kev-ui:registry` line from `.npmrc` and run `pnpm install` again. No other changes needed.
+
+### Starting Fresh (Full Reset)
+
+If packages are broken or you need a clean slate:
+
+```bash
+# 1. Stop Verdaccio
+
+# 2. Wipe Verdaccio storage and credentials
+rm -rf ~/.config/verdaccio/storage
+rm -f ~/.config/verdaccio/htpasswd
+
+# 3. Wipe sandbox node_modules and lockfile
+rm -rf node_modules pnpm-lock.yaml
+
+# 4. Start Verdaccio again
+verdaccio --listen 14385
+
+# 5. Re-register user (step 3 above)
+
+# 6. Build and publish from KEV-UI monorepo (step 4 above)
+
+# 7. Install
+pnpm install
+```
 
 ## Running
 
@@ -148,8 +187,7 @@ src/
 │   ├── chip/                   # Chip demos (incl. deletable)
 │   ├── drawer/                 # Drawer demos
 │   ├── dropdown-menu/          # DropdownMenu demos
-│   ├── form/                   # Form demos
-│   ├── form-fields/            # TextField, Combobox demos
+│   ├── form/                   # Form, TextField, Combobox, Validation demos
 │   ├── icons/                  # Icons demo
 │   ├── js-utils/               # JS utility demos
 │   ├── list/                   # List demos
@@ -189,4 +227,4 @@ If you see keys like `chip.removeLabel` instead of text:
 2. For utility packages, verify manual `registerXxxTranslations()` calls exist in `i18n.ts`
 3. Check the browser console for i18next warnings
 
-**Last Updated:** February 15, 2026
+**Last Updated:** February 16, 2026

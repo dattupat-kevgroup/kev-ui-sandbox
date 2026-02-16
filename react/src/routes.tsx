@@ -8,11 +8,11 @@ import type {
  */
 export const sidebarNavItems: iSidebarNavigationItem[] = [
   {
-    id: 'form-fields',
-    appName: 'Form Fields',
-    text: 'Form Fields',
+    id: 'form',
+    appName: 'Form',
+    text: 'Form',
     icon: 'FormsIcon',
-    route: '/form-fields',
+    route: '/form',
   },
   {
     id: 'button',
@@ -69,10 +69,11 @@ export const sidebarNavItems: iSidebarNavigationItem[] = [
  * NavBar links for each package (sub-pages)
  */
 export const navLinksByPackage: Record<string, iSecondaryNavigationItemLink[]> = {
-  'form-fields': [
-    { id: 'ff-all', label: 'All Fields', href: '/form-fields' },
-    { id: 'ff-textfield', label: 'TextField', href: '/form-fields/textfield' },
-    { id: 'ff-combobox', label: 'Combobox', href: '/form-fields/combobox' },
+  form: [
+    { id: 'form-overview', label: 'Overview', href: '/form' },
+    { id: 'form-textfield', label: 'TextField', href: '/form/textfield' },
+    { id: 'form-combobox', label: 'Combobox', href: '/form/combobox' },
+    { id: 'form-validation', label: 'Validation', href: '/form/validation' },
   ],
   button: [
     { id: 'btn-basic', label: 'Basic', href: '/button' },
@@ -103,10 +104,10 @@ export const navLinksByPackage: Record<string, iSecondaryNavigationItemLink[]> =
  */
 export const getPackageFromPath = (pathname: string): string => {
   const segments = pathname.split('/').filter(Boolean);
-  if (segments[0] === 'form-fields' || segments[0] === 'dropdown-menu') {
+  if (segments[0] === 'form' || segments[0] === 'dropdown-menu') {
     return segments[0];
   }
-  return segments[0] || 'form-fields';
+  return segments[0] || 'form';
 };
 
 /**

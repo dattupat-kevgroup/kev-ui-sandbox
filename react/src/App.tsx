@@ -3,10 +3,11 @@ import { AppLinkProvider } from '@kev-ui/app-link';
 
 import Layout from './components/Layout';
 
-// Form Fields Pages
-import FormFieldsAll from './pages/form-fields/index';
-import TextFieldPage from './pages/form-fields/textfield';
-import ComboboxPage from './pages/form-fields/combobox';
+// Form Pages
+import FormOverview from './pages/form/index';
+import TextFieldPage from './pages/form/textfield';
+import ComboboxPage from './pages/form/combobox';
+import FormValidationPage from './pages/form/validation';
 
 // Button Pages
 import ButtonPage from './pages/button/index';
@@ -41,13 +42,14 @@ function App() {
       <AppLinkProvider linkComponent={RouterLink}>
         <Layout>
           <Routes>
-            {/* Redirect root to /form-fields */}
-            <Route path="/" element={<Navigate to="/form-fields" replace />} />
+            {/* Redirect root to /form */}
+            <Route path="/" element={<Navigate to="/form" replace />} />
 
-            {/* Form Fields routes */}
-            <Route path="/form-fields" element={<FormFieldsAll />} />
-            <Route path="/form-fields/textfield" element={<TextFieldPage />} />
-            <Route path="/form-fields/combobox" element={<ComboboxPage />} />
+            {/* Form routes */}
+            <Route path="/form" element={<FormOverview />} />
+            <Route path="/form/textfield" element={<TextFieldPage />} />
+            <Route path="/form/combobox" element={<ComboboxPage />} />
+            <Route path="/form/validation" element={<FormValidationPage />} />
 
             {/* Button routes */}
             <Route path="/button" element={<ButtonPage />} />
