@@ -549,7 +549,7 @@ packages:
         optional: true
 
   '@kev-ui/avatar@0.1.0':
-    resolution: {integrity: sha512-1HvRSc0igrVM8sBP9iIHJtib676Xgu4Gqex4ClWja7R1HOpmF2sbGxc14S0LvX5iZQXkdveJxzpNuatYsc+6sw==}
+    resolution: {integrity: sha512-6lY5oGUqg5OACchxgsGSwtoLADHu9igxZDSEmk2wLkxkNCt0ZTIKj53RdTpEja7KAP2B5NBu3L2EDgf2n81DJw==}
     peerDependencies:
       i18next: ^25.0.0
       react: ^19.2.0
@@ -598,7 +598,7 @@ packages:
         optional: true
 
   '@kev-ui/drawer@0.1.0':
-    resolution: {integrity: sha512-jVzG5Fc5JiJuAhwswsF0tdGtAMnl2NOP/Lh+hZs9Ap435OoH/819PTQCmjTJCiaZwxwau3+KDxp8UiIiRc1nXQ==}
+    resolution: {integrity: sha512-mURi2cN1G5xW+M7Qt3ATcGzZxCuBl63ZkljzC4V/uRLNw00XdaCrXhHZnGZLu/HsUixiUtqbuobNshRvQsZ9CQ==}
     peerDependencies:
       i18next: ^25.0.0
       react: ^19.2.0
@@ -606,7 +606,7 @@ packages:
       react-i18next: ^16.0.0
 
   '@kev-ui/dropdown-menu@0.1.0':
-    resolution: {integrity: sha512-blo1/j3/8/kwv8kSSKr+ri/R+ZeOejFuUrJTznyiqgUY/RE1hZwkOXyff6I8cpidMBOHnJ9Keqx/6AKZ/yM5Ww==}
+    resolution: {integrity: sha512-UZcn+FIB+z7oIfcVDbtp03vNb3NsgGrR2ygE/0Iflqthg17PdQmIR1w8ytePBmpRzCmLHfWYkPkZBc7H1OQgeA==}
     peerDependencies:
       i18next: ^25.0.0
       react: ^19.2.0
@@ -614,7 +614,7 @@ packages:
       react-i18next: ^16.0.0
 
   '@kev-ui/form-field@0.1.0':
-    resolution: {integrity: sha512-WjeYYZaR88mlrL+XWrAXkgX/KPR4Ja/aKxrYjUUqSuI4PzwdURw9lDhtxFNst2eGb8fXAtoZqgPaNUawyUtsgA==}
+    resolution: {integrity: sha512-hKKpIzgPs3urLx5BUrG3GBt0NYYSxHHlE+7Dm/6vCC0bppIad4qcYS8mWmHYn53dqZvt7ZFMJwN3KUZSQ8bsWQ==}
     peerDependencies:
       i18next: ^25.0.0
       react: ^19.2.0
@@ -633,7 +633,7 @@ packages:
       i18next: ^25.0.0
 
   '@kev-ui/form@0.1.0':
-    resolution: {integrity: sha512-c2PdXRRWzNgb4tQ5T+0kC9MRuOSXynF7pAfTCT489IdDH/JLhDEPWiK4Ezu7Iz3ZKE6QyxPcwsvuT4whokvjIg==}
+    resolution: {integrity: sha512-PkWcYKNjWSbTgr3xiDICcbcQIQhE2MPIJ+KWPCPpdPJtBicb/K9dGtqDKcrO8fxcr7QNyq5p9LsFTSG6Azgm3w==}
     peerDependencies:
       i18next: ^25.0.0
       react: ^19.2.0
@@ -658,7 +658,7 @@ packages:
       react-i18next: ^16.0.0
 
   '@kev-ui/modal@0.1.0':
-    resolution: {integrity: sha512-XZTuwxhVNlYIySlkpRrL4S8/xOvFrloRxtkjH/dVYop5SYZhnPgEc3oDJwUDb/NRKigZWaeEAbWSXAg0w9EvxQ==}
+    resolution: {integrity: sha512-gjprs62UsVudCO1ys8K6gqRZW7t6Qv3s3llL1hnYm2xAbMMPcxk0ZMSnN+rSFcb8TRxjhpHfXW5Pf2P3fnYCVQ==}
     peerDependencies:
       i18next: ^25.0.0
       react: ^19.2.0
@@ -680,7 +680,7 @@ packages:
       react-dom: ^19.2.0
 
   '@kev-ui/scaffolding@0.1.0':
-    resolution: {integrity: sha512-bHIJFp1QgDC8SCpB9y7FH5KgclsSBI2rmQAqtXKWATB82PRKYKsvP6OFBpHIoQK4Cxs+eS7u7C5XNaENBgurEQ==}
+    resolution: {integrity: sha512-M3Dyd9ce4OeLhrMmGiU4t+4npSGGX6qk7m02Cz2z5iDU2Li43iB1y9J4C+WQfoI0ktvaoclMR9NH8oWO0ja5YA==}
     peerDependencies:
       i18next: ^25.0.0
       react: ^19.2.0
