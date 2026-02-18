@@ -1,8 +1,8 @@
 import { List, ListItem, ListItemText } from '@kev-ui/list';
-import { useListItems } from '../../hooks/queries/useListQueries';
-import { useDeleteListItem, useAddListItem } from '../../hooks/mutations/useListMutations';
+import { useListItems } from '../../services/queries/useListQueries';
+import { useDeleteListItem, useAddListItem } from '../../services/mutations/useListMutations';
 import { useAppSelector, useAppDispatch } from '../../app/hooks';
-import { toggleItemSelection, selectSelectedItems, setFilterText, selectFilterText } from '../../store/slices/list/listSlice';
+import { toggleItemSelection, selectSelectedItems, setFilterText, selectFilterText } from '../../store/slices/list/slice';
 
 export default function ListPage() {
   const { data: items, isPending, isError, error } = useListItems();

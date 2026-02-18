@@ -1,5 +1,5 @@
 import { isNil } from '@kev-ui/js-utils/isNil';
-import { useUtilityDetail } from '../../../hooks/queries/useJsUtilsQueries';
+import { useUtilityDetail } from '../../../services/queries/useJsUtilsQueries';
 
 const testCases = [
   { value: null, label: 'null' },

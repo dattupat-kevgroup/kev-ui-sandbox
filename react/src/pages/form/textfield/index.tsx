@@ -1,7 +1,7 @@
 import { Typography } from '@kev-ui/typography/Typography';
 import { TextField } from '@kev-ui/form-field/TextField';
-import { useFormData } from '../../../hooks/queries/useFormQueries';
-import { useUpdateFormField } from '../../../hooks/mutations/useFormMutations';
+import { useFormData } from '../../../services/queries/useFormQueries';
+import { useUpdateFormField } from '../../../services/mutations/useFormMutations';
 
 export default function FormTextFieldPage() {
   const { data: savedData, isPending, isError, error } = useFormData();

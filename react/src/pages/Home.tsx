@@ -1,4 +1,4 @@
-import { useDashboard } from '../hooks/queries/useHomeQueries';
+import { useDashboard } from '../services/queries/useHomeQueries';
 
 export default function Home() {
   const { data: stats, isPending, isError, error } = useDashboard();

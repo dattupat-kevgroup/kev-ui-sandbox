@@ -1,8 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
-import uiReducer from '../store/slices/ui/uiSlice';
-import formReducer from '../store/slices/form/formSlice';
-import listReducer from '../store/slices/list/listSlice';
-import notificationReducer from '../store/slices/notification/notificationSlice';
+import uiReducer from '../store/slices/ui/slice';
+import formReducer from '../store/slices/form/slice';
+import listReducer from '../store/slices/list/slice';
+import notificationReducer from '../store/slices/notification/slice';
 
 export const store = configureStore({
   reducer: {

@@ -19,7 +19,7 @@ import {
   UserIcon,
   UsersIcon,
 } from '@kev-ui/icons';
-import { useIconCatalog } from '../../hooks/queries/useIconQueries';
+import { useIconCatalog } from '../../services/queries/useIconQueries';
 import type { ComponentType } from 'react';
 
 const iconComponents: Record<string, ComponentType<{ fontSize?: string; color?: string; className?: string }>> = {

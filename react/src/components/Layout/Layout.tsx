@@ -7,7 +7,7 @@ import type {
   iLanguageOption,
 } from '@kev-ui/scaffolding';
 
-import { useNavItems, useNavLinks } from '../../hooks/queries/useScaffoldingQueries';
+import { useNavItems, useNavLinks } from '../../services/queries/useScaffoldingQueries';
 import { getPackageFromPath } from '../../routes';
 
 interface LayoutProps {

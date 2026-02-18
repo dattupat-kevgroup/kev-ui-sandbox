@@ -1,6 +1,6 @@
 import { Typography } from '@kev-ui/typography/Typography';
 import { useTranslation } from 'react-i18next';
-import { useContentBlocks } from '../../../hooks/queries/useTypographyQueries';
+import { useContentBlocks } from '../../../services/queries/useTypographyQueries';
 
 export default function TypographyBasicPage() {
   const { t } = useTranslation('@kev-ui/typography');

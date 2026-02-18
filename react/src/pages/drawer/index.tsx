@@ -1,12 +1,12 @@
 import { Drawer } from '@kev-ui/drawer/Drawer';
 import { Button } from '@kev-ui/button/Button';
-import { useNotifications } from '../../hooks/queries/useDrawerQueries';
-import { useMarkNotificationRead } from '../../hooks/mutations/useDrawerMutations';
+import { useNotifications } from '../../services/queries/useDrawerQueries';
+import { useMarkNotificationRead } from '../../services/mutations/useDrawerMutations';
 import { useAppSelector, useAppDispatch } from '../../app/hooks';
 import {
   selectNotificationDrawerOpen,
   setNotificationDrawerOpen,
-} from '../../store/slices/notification/notificationSlice';
+} from '../../store/slices/notification/slice';
 
 export default function DrawerPage() {
   const { data: notifications, isPending, isError, error } = useNotifications();

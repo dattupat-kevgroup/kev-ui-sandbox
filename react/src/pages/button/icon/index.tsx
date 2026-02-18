@@ -1,7 +1,7 @@
 import { Typography } from '@kev-ui/typography/Typography';
 import { IconButton } from '@kev-ui/button/IconButton';
 import { BellIcon, UserIcon, GlobeIcon, BurgerIcon } from '@kev-ui/icons';
-import { useNotificationSummary, useUserProfile } from '../../../hooks/queries/useButtonQueries';
+import { useNotificationSummary, useUserProfile } from '../../../services/queries/useButtonQueries';
 
 export default function ButtonIconPage() {
   const { data: summary, isPending: summaryLoading } = useNotificationSummary();

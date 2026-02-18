@@ -1,5 +1,5 @@
 import { Typography } from '@kev-ui/typography/Typography';
-import { useFormPages } from '../../hooks/queries/useFormQueries';
+import { useFormPages } from '../../services/queries/useFormQueries';
 
 export default function FormOverview() {
   const { data: subPages, isPending, isError, error } = useFormPages();

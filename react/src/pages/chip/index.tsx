@@ -1,6 +1,6 @@
 import { Chip } from '@kev-ui/chip/Chip';
-import { useChips } from '../../hooks/queries/useChipQueries';
-import { useDeleteChip, useAddChip } from '../../hooks/mutations/useChipMutations';
+import { useChips } from '../../services/queries/useChipQueries';
+import { useDeleteChip, useAddChip } from '../../services/mutations/useChipMutations';
 
 export default function ChipPage() {
   const { data: chips, isPending, isError, error } = useChips();

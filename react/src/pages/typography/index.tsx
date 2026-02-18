@@ -1,5 +1,5 @@
 import { Typography } from '@kev-ui/typography/Typography';
-import { useContentBlocks } from '../../hooks/queries/useTypographyQueries';
+import { useContentBlocks } from '../../services/queries/useTypographyQueries';
 
 const variants = [
   { variant: 'h1' as const, label: 'h1 — Heading 1' },

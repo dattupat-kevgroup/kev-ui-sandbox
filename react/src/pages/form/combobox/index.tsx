@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Typography } from '@kev-ui/typography/Typography';
 import { Combobox } from '@kev-ui/form-field/Combobox';
-import { useComboboxOptions } from '../../../hooks/queries/useComboboxQueries';
+import { useComboboxOptions } from '../../../services/queries/useComboboxQueries';
 
 export default function FormComboboxPage() {
   const { data: options, isPending, isError, error } = useComboboxOptions();

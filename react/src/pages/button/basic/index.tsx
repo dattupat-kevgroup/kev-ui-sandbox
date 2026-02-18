@@ -1,5 +1,5 @@
 import { Button } from '@kev-ui/button/Button';
-import { useButtonConfigs } from '../../../hooks/queries/useButtonQueries';
+import { useButtonConfigs } from '../../../services/queries/useButtonQueries';
 
 export default function ButtonBasicPage() {
   const { data: configs, isPending, isError, error } = useButtonConfigs();

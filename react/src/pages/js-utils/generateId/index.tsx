@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { generateId } from '@kev-ui/js-utils/generateId';
 import * as JsUtils from '@kev-ui/js-utils';
-import { useUtilityDetail } from '../../../hooks/queries/useJsUtilsQueries';
+import { useUtilityDetail } from '../../../services/queries/useJsUtilsQueries';
 
 export default function GenerateIdPage() {
   const [id1] = useState(() => generateId());

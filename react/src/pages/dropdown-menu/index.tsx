@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { DropdownMenu } from '@kev-ui/dropdown-menu/DropdownMenu';
 import { GlobeIcon } from '@kev-ui/icons';
-import { useDropdownOptions } from '../../hooks/queries/useDropdownQueries';
-import { useSelectDropdownOption } from '../../hooks/mutations/useDropdownMutations';
+import { useDropdownOptions } from '../../services/queries/useDropdownQueries';
+import { useSelectDropdownOption } from '../../services/mutations/useDropdownMutations';
 
 export default function DropdownMenuPage() {
   const { data: options, isPending, isError, error } = useDropdownOptions();

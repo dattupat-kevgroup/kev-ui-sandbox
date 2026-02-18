@@ -1,5 +1,5 @@
 import { Typography } from '@kev-ui/typography/Typography';
-import { useUtilities } from '../../hooks/queries/useJsUtilsQueries';
+import { useUtilities } from '../../services/queries/useJsUtilsQueries';
 
 export default function JsUtilsOverview() {
   const { data: utilities, isPending, isError, error } = useUtilities();

@@ -6,7 +6,7 @@ import { registerFormTranslations } from '@kev-ui/form/locales';
 import { registerFormFieldTranslations } from '@kev-ui/form-field/locales';
 import { registerFormValidationTranslations } from '@kev-ui/form-validation/locales';
 import { eElementType } from '@kev-ui/form-utilities';
-import { useSubmitForm } from '../../../hooks/mutations/useFormMutations';
+import { useSubmitForm } from '../../../services/mutations/useFormMutations';
 
 // Form ref type (not exported from main package)
 interface iFormRef {
