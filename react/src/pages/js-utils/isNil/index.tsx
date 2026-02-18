@@ -1,25 +1,43 @@
 import { isNil } from '@kev-ui/js-utils/isNil';
+import { useUtilityDetail } from '../../../hooks/queries/useJsUtilsQueries';
+
+const testCases = [
+  { value: null, label: 'null' },
+  { value: undefined, label: 'undefined' },
+  { value: '', label: 'empty string' },
+  { value: [], label: 'empty array' },
+  { value: {}, label: 'empty object' },
+  { value: 'hello', label: '"hello"' },
+  { value: 42, label: '42' },
+  { value: [1, 2], label: '[1, 2]' },
+];
 
 export default function IsNilPage() {
-  const testCases = [
-    { value: null, label: 'null' },
-    { value: undefined, label: 'undefined' },
-    { value: '', label: 'empty string' },
-    { value: [], label: 'empty array' },
-    { value: {}, label: 'empty object' },
-    { value: 'hello', label: '"hello"' },
-    { value: 42, label: '42' },
-    { value: [1, 2], label: '[1, 2]' },
-  ];
+  const { data: meta, isPending } = useUtilityDetail('isNil');
 
   return (
     <div className="max-w-4xl">
       <h1 className="text-3xl font-bold mb-4">isNil - JS Utils</h1>
 
+      {isPending && (
+        <div className="bg-white p-6 rounded-lg shadow mb-6 animate-pulse">
+          <div className="h-4 bg-gray-200 rounded w-full mb-2" />
+          <div className="h-4 bg-gray-200 rounded w-2/3" />
+        </div>
+      )}
+
+      {meta && (
+        <div className="bg-white p-6 rounded-lg shadow mb-6">
+          <h2 className="text-xl font-semibold mb-2">Description</h2>
+          <p className="text-gray-600 text-sm mb-2">{meta.description}</p>
+          <code className="text-xs bg-gray-100 px-2 py-1 rounded">{meta.signature}</code>
+        </div>
+      )}
+
       <div className="bg-white p-6 rounded-lg shadow mb-6">
         <h2 className="text-xl font-semibold mb-3">Import Method</h2>
         <code className="bg-gray-100 px-2 py-1 rounded text-sm">
-          import {`{ isNil }`} from '@kev-ui/js-utils/isNil'
+          import {`{ isNil }`} from &apos;@kev-ui/js-utils/isNil&apos;
         </code>
       </div>
 
@@ -45,15 +63,6 @@ export default function IsNilPage() {
             ))}
           </tbody>
         </table>
-      </div>
-
-      <div className="bg-green-50 p-6 rounded-lg">
-        <h2 className="text-xl font-semibold mb-2">✓ Integration Status</h2>
-        <ul className="list-disc ml-6 space-y-1">
-          <li>Subpath import works</li>
-          <li>Function handles all edge cases correctly</li>
-          <li>TypeScript types available</li>
-        </ul>
       </div>
     </div>
   );

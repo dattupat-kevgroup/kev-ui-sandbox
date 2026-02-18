@@ -1,8 +1,10 @@
 import { Typography } from '@kev-ui/typography/Typography';
 import { useTranslation } from 'react-i18next';
+import { useContentBlocks } from '../../../hooks/queries/useTypographyQueries';
 
 export default function TypographyBasicPage() {
   const { t } = useTranslation('@kev-ui/typography');
+  const { data: blocks, isPending, isError, error } = useContentBlocks();
 
   return (
     <div className="max-w-4xl">
@@ -11,8 +13,43 @@ export default function TypographyBasicPage() {
       <div className="bg-white p-6 rounded-lg shadow mb-6">
         <h2 className="text-xl font-semibold mb-3">Import Method</h2>
         <code className="bg-gray-100 px-2 py-1 rounded text-sm">
-          import {`{ Typography }`} from '@kev-ui/typography/Typography'
+          import {`{ Typography }`} from &apos;@kev-ui/typography/Typography&apos;
         </code>
+      </div>
+
+      <div className="bg-white p-6 rounded-lg shadow mb-6">
+        <h2 className="text-xl font-semibold mb-3">
+          Content from API
+          {isPending && <span className="ml-2 text-sm text-gray-400">Loading...</span>}
+        </h2>
+
+        {isPending && (
+          <div className="space-y-3">
+            {[1, 2, 3].map((i) => (
+              <div key={i} className="animate-pulse">
+                <div className="h-5 bg-gray-200 rounded w-3/4" />
+              </div>
+            ))}
+          </div>
+        )}
+
+        {isError && (
+          <p className="text-red-600 text-sm">Failed to load content: {error.message}</p>
+        )}
+
+        {blocks && (
+          <div className="space-y-2">
+            {blocks.map((block) => (
+              <Typography
+                key={block.id}
+                variant={block.variant as 'h1' | 'h2' | 'h3' | 'body1' | 'body2' | 'caption'}
+                align={block.alignment}
+              >
+                {block.text}
+              </Typography>
+            ))}
+          </div>
+        )}
       </div>
 
       <div className="bg-white p-6 rounded-lg shadow mb-6">
@@ -39,17 +76,6 @@ export default function TypographyBasicPage() {
       <div className="bg-white p-6 rounded-lg shadow mb-6">
         <h2 className="text-xl font-semibold mb-3">i18n Translation Demo</h2>
         <Typography variant="body1">{t('Typography.copyright')}</Typography>
-      </div>
-
-      <div className="bg-green-50 p-6 rounded-lg">
-        <h2 className="text-xl font-semibold mb-2">Integration Status</h2>
-        <ul className="list-disc ml-6 space-y-1">
-          <li>Package installed from Verdaccio</li>
-          <li>Subpath import works</li>
-          <li>TypeScript types available</li>
-          <li>Component renders correctly</li>
-          <li>i18n translations work</li>
-        </ul>
       </div>
     </div>
   );

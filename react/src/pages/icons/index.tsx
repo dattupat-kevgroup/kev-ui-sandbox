@@ -19,30 +19,34 @@ import {
   UserIcon,
   UsersIcon,
 } from '@kev-ui/icons';
+import { useIconCatalog } from '../../hooks/queries/useIconQueries';
+import type { ComponentType } from 'react';
 
-const icons = [
-  { name: 'AccountingIcon', component: AccountingIcon },
-  { name: 'BellIcon', component: BellIcon },
-  { name: 'BurgerIcon', component: BurgerIcon },
-  { name: 'CatalogIcon', component: CatalogIcon },
-  { name: 'ChevronIcon', component: ChevronIcon },
-  { name: 'CloseIcon', component: CloseIcon },
-  { name: 'CollectionsIcon', component: CollectionsIcon },
-  { name: 'DistrictCatalogIcon', component: DistrictCatalogIcon },
-  { name: 'FormsIcon', component: FormsIcon },
-  { name: 'GlobeIcon', component: GlobeIcon },
-  { name: 'LogoIcon', component: LogoIcon },
-  { name: 'LunchBoxIcon', component: LunchBoxIcon },
-  { name: 'PosIcon', component: PosIcon },
-  { name: 'ReceiptIcon', component: ReceiptIcon },
-  { name: 'RoleChangeIcon', component: RoleChangeIcon },
-  { name: 'ShoppingCartIcon', component: ShoppingCartIcon },
-  { name: 'TriangleIcon', component: TriangleIcon },
-  { name: 'UserIcon', component: UserIcon },
-  { name: 'UsersIcon', component: UsersIcon },
-];
+const iconComponents: Record<string, ComponentType<{ fontSize?: string; color?: string; className?: string }>> = {
+  AccountingIcon,
+  BellIcon,
+  BurgerIcon,
+  CatalogIcon,
+  ChevronIcon,
+  CloseIcon,
+  CollectionsIcon,
+  DistrictCatalogIcon,
+  FormsIcon,
+  GlobeIcon,
+  LogoIcon,
+  LunchBoxIcon,
+  PosIcon,
+  ReceiptIcon,
+  RoleChangeIcon,
+  ShoppingCartIcon,
+  TriangleIcon,
+  UserIcon,
+  UsersIcon,
+};
 
 export default function IconsPage() {
+  const { data: catalog, isPending, isError, error } = useIconCatalog();
+
   return (
     <div className="max-w-4xl space-y-6">
       <h1 className="text-3xl font-bold mb-4">Icons</h1>
@@ -50,23 +54,51 @@ export default function IconsPage() {
       <div className="bg-white p-6 rounded-lg shadow">
         <h2 className="text-xl font-semibold mb-3">Import</h2>
         <code className="bg-gray-100 px-2 py-1 rounded text-sm block">
-          import {`{ IconName }`} from '@kev-ui/icons'
+          import {`{ IconName }`} from &apos;@kev-ui/icons&apos;
         </code>
       </div>
 
       <div className="bg-white p-6 rounded-lg shadow">
-        <h2 className="text-xl font-semibold mb-4">All Icons</h2>
-        <div className="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-6 gap-4">
-          {icons.map(({ name, component: Icon }) => (
-            <div
-              key={name}
-              className="flex flex-col items-center p-3 border rounded hover:bg-gray-50"
-            >
-              <Icon fontSize="large" className="mb-2" />
-              <span className="text-xs text-gray-600 text-center break-all">{name}</span>
-            </div>
-          ))}
-        </div>
+        <h2 className="text-xl font-semibold mb-4">
+          All Icons
+          {catalog && <span className="text-sm text-gray-400 font-normal ml-2">({String(catalog.length)} from API)</span>}
+        </h2>
+
+        {isPending && (
+          <div className="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-6 gap-4">
+            {Array.from({ length: 12 }).map((_, i) => (
+              <div key={i} className="flex flex-col items-center p-3 border rounded animate-pulse">
+                <div className="h-8 w-8 bg-gray-200 rounded mb-2" />
+                <div className="h-3 bg-gray-200 rounded w-16" />
+              </div>
+            ))}
+          </div>
+        )}
+
+        {isError && (
+          <p className="text-red-600 text-sm">Failed to load icons: {error.message}</p>
+        )}
+
+        {catalog && (
+          <div className="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-6 gap-4">
+            {Object.entries(iconComponents).map(([name, Icon]) => {
+              const meta = catalog.find((c) => c.name === name);
+              return (
+                <div
+                  key={name}
+                  className="flex flex-col items-center p-3 border rounded hover:bg-gray-50"
+                  title={meta?.tags.join(', ')}
+                >
+                  <Icon fontSize="large" className="mb-2" />
+                  <span className="text-xs text-gray-600 text-center break-all">{name}</span>
+                  {meta && (
+                    <span className="text-[10px] text-gray-400">{meta.category}</span>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        )}
       </div>
 
       <div className="bg-white p-6 rounded-lg shadow">

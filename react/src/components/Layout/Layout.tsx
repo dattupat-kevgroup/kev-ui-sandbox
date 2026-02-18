@@ -1,4 +1,4 @@
-import { type ReactNode } from 'react';
+import { type ReactNode, useMemo } from 'react';
 import { useLocation, useNavigate } from 'react-router';
 import { Scaffolding } from '@kev-ui/scaffolding';
 import type {
@@ -7,7 +7,8 @@ import type {
   iLanguageOption,
 } from '@kev-ui/scaffolding';
 
-import { getNavLinksForPath, getSidebarItemsForPath, getPackageFromPath } from '../routes';
+import { useNavItems, useNavLinks } from '../../hooks/queries/useScaffoldingQueries';
+import { getPackageFromPath } from '../../routes';
 
 interface LayoutProps {
   children: ReactNode;
@@ -22,12 +23,29 @@ const languages: iLanguageOption[] = [
 export default function Layout({ children }: LayoutProps) {
   const location = useLocation();
   const navigate = useNavigate();
+  const { data: navItems } = useNavItems();
+  const { data: navLinks } = useNavLinks();
 
   const pathname = location.pathname;
   const packageId = getPackageFromPath(pathname);
 
-  const sidebarItems = getSidebarItemsForPath(pathname);
-  const secondaryNavItems = getNavLinksForPath(pathname);
+  const sidebarItems: iSidebarNavigationItem[] = useMemo(() => {
+    if (!navItems) return [];
+    return navItems.map((item) => ({
+      ...item,
+      isCurrentApp: item.id === packageId,
+    }));
+  }, [navItems, packageId]);
+
+  const secondaryNavItems = useMemo(() => {
+    if (!navLinks) return [];
+    return navLinks
+      .filter((link) => link.packageId === packageId)
+      .map((link) => ({
+        ...link,
+        isActive: pathname === link.href,
+      }));
+  }, [navLinks, packageId, pathname]);
 
   const pageTitle = sidebarItems.find((item) => item.id === packageId)?.text || 'KEV-UI Sandbox';
 

@@ -6,6 +6,7 @@ import { registerFormTranslations } from '@kev-ui/form/locales';
 import { registerFormFieldTranslations } from '@kev-ui/form-field/locales';
 import { registerFormValidationTranslations } from '@kev-ui/form-validation/locales';
 import { eElementType } from '@kev-ui/form-utilities';
+import { useSubmitForm } from '../../../hooks/mutations/useFormMutations';
 
 // Form ref type (not exported from main package)
 interface iFormRef {
@@ -187,13 +188,20 @@ const validationForm = {
 export default function FormValidationPage() {
   const { t, i18n } = useTranslation();
   const formRef = useRef<iFormRef>(null);
+  const submitForm = useSubmitForm();
 
   // Register translations
   registerTranslations(i18n);
 
   const handleSubmit = (data: Record<string, unknown>) => {
-    console.log('Form submitted:', data);
-    alert(`Form submitted successfully!\n\nData: ${JSON.stringify(data, null, 2)}`);
+    submitForm.mutate(
+      { formId: validationForm.id, values: data as Record<string, string> },
+      {
+        onSuccess: () => {
+          alert('Form submitted successfully!');
+        },
+      },
+    );
   };
 
   const handleReset = () => {
@@ -221,13 +229,24 @@ export default function FormValidationPage() {
         />
 
         <div className="flex gap-3 mt-6 pt-4 border-t">
-          <Button type="submit" form={validationForm.id} color="primary">
-            Submit Form
+          <Button
+            type="submit"
+            form={validationForm.id}
+            color="primary"
+            disabled={submitForm.isPending}
+          >
+            {submitForm.isPending ? 'Submitting...' : 'Submit Form'}
           </Button>
           <Button type="button" variant="outlined" onClick={handleReset}>
             Reset Form
           </Button>
         </div>
+
+        {submitForm.isError && (
+          <p className="text-red-600 text-sm mt-2">
+            Submission failed: {submitForm.error.message}
+          </p>
+        )}
       </div>
     </div>
   );

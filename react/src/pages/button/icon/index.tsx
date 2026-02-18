@@ -1,8 +1,12 @@
 import { Typography } from '@kev-ui/typography/Typography';
 import { IconButton } from '@kev-ui/button/IconButton';
 import { BellIcon, UserIcon, GlobeIcon, BurgerIcon } from '@kev-ui/icons';
+import { useNotificationSummary, useUserProfile } from '../../../hooks/queries/useButtonQueries';
 
 export default function ButtonIconPage() {
+  const { data: summary, isPending: summaryLoading } = useNotificationSummary();
+  const { data: profile, isPending: profileLoading } = useUserProfile();
+
   return (
     <div>
       <Typography variant="h4" className="mb-4">Icon Button</Typography>
@@ -11,6 +15,27 @@ export default function ButtonIconPage() {
       </Typography>
 
       <div className="space-y-6">
+        {/* API Data */}
+        <div className="bg-white p-4 rounded-lg shadow">
+          <Typography variant="h6" className="mb-3">API Data</Typography>
+          <div className="flex gap-4 text-sm">
+            <span className="text-gray-600">
+              Notifications: {summaryLoading ? (
+                <span className="inline-block w-4 h-4 bg-gray-200 rounded animate-pulse" />
+              ) : (
+                <strong>{String(summary?.count ?? 0)}</strong>
+              )}
+            </span>
+            <span className="text-gray-600">
+              User: {profileLoading ? (
+                <span className="inline-block w-16 h-4 bg-gray-200 rounded animate-pulse" />
+              ) : (
+                <strong>{profile?.name}</strong>
+              )}
+            </span>
+          </div>
+        </div>
+
         <div>
           <Typography variant="h6" className="mb-3">Default</Typography>
           <div className="flex gap-2">

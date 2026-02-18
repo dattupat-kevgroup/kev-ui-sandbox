@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route, Link, type LinkProps, Navigate } from 'react-router';
 import { AppLinkProvider } from '@kev-ui/app-link';
 
-import Layout from './components/Layout';
+import Layout from './components/Layout/Layout';
 
 // Form Pages
 import FormOverview from './pages/form/index';

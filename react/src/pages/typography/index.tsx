@@ -1,4 +1,5 @@
 import { Typography } from '@kev-ui/typography/Typography';
+import { useContentBlocks } from '../../hooks/queries/useTypographyQueries';
 
 const variants = [
   { variant: 'h1' as const, label: 'h1 — Heading 1' },
@@ -16,6 +17,8 @@ const variants = [
 ];
 
 export default function TypographyOverview() {
+  const { data: blocks, isPending, isError, error } = useContentBlocks();
+
   return (
     <div className="max-w-4xl space-y-6">
       <h1 className="text-3xl font-bold mb-4">Typography</h1>
@@ -23,8 +26,44 @@ export default function TypographyOverview() {
       <div className="bg-white p-6 rounded-lg shadow">
         <h2 className="text-xl font-semibold mb-3">Import</h2>
         <code className="bg-gray-100 px-2 py-1 rounded text-sm block">
-          import {`{ Typography }`} from '@kev-ui/typography/Typography'
+          import {`{ Typography }`} from &apos;@kev-ui/typography/Typography&apos;
         </code>
+      </div>
+
+      {/* Content from API */}
+      <div className="bg-white p-6 rounded-lg shadow">
+        <h2 className="text-xl font-semibold mb-4">
+          Content from API
+          {isPending && <span className="ml-2 text-sm text-gray-400">Loading...</span>}
+        </h2>
+
+        {isPending && (
+          <div className="space-y-3">
+            {[1, 2, 3, 4].map((i) => (
+              <div key={i} className="animate-pulse">
+                <div className="h-5 bg-gray-200 rounded w-3/4" />
+              </div>
+            ))}
+          </div>
+        )}
+
+        {isError && (
+          <p className="text-red-600 text-sm">Failed to load content: {error.message}</p>
+        )}
+
+        {blocks && (
+          <div className="space-y-2">
+            {blocks.map((block) => (
+              <Typography
+                key={block.id}
+                variant={block.variant as 'h1' | 'h2' | 'h3' | 'body1' | 'body2' | 'caption'}
+                align={block.alignment}
+              >
+                {block.text}
+              </Typography>
+            ))}
+          </div>
+        )}
       </div>
 
       <div className="bg-white p-6 rounded-lg shadow">
